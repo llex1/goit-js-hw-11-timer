@@ -9,28 +9,40 @@ class CountdownTimer {
     this.selector = selector;
     this.targetDate = new Date(targetDate);
   }
+  // start() {
+  //   const date = new Date();
+  //   const time = this.targetDate - date;
+  //   let days = Math.floor(time / (1000 * 60 * 60 * 24));
+  //   let hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+  //   let mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+  //   let secs = Math.floor((time % (1000 * 60)) / 1000);
+  //   dom_body.insertAdjacentHTML('beforeend', hbs_container({selector:this.selector}));
+  //   setInterval(()=>{
+  //     if (secs === 0) {
+  //       secs = 60;
+  //       if (mins === 0){
+  //         mins = 60;
+  //         if (hours <= 0){
+  //           hours = 24;
+  //           days--
+  //         }
+  //         hours--;
+  //       }
+  //       mins--
+  //     }
+  //     secs--
+  //     document.getElementById(`${this.selector}`).innerHTML = hbs_timer({days, hours, mins, secs});
+  //   }, 1000);
+  // }
   start() {
-    const date = new Date();
-    const time = this.targetDate - date;
-    let days = Math.floor(time / (1000 * 60 * 60 * 24));
-    let hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-    let mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
-    let secs = Math.floor((time % (1000 * 60)) / 1000);
     dom_body.insertAdjacentHTML('beforeend', hbs_container({selector:this.selector}));
     setInterval(()=>{
-      if (secs === 0) {
-        secs = 60;
-        if (mins === 0){
-          mins = 60;
-          if (hours <= 0){
-            hours = 24;
-            days--
-          }
-          hours--;
-        }
-        mins--
-      }
-      secs--
+      const date = new Date();
+      const time = this.targetDate - date;
+      const days = Math.floor(time / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((time % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const mins = Math.floor((time % (1000 * 60 * 60)) / (1000 * 60));
+      const secs = Math.floor((time % (1000 * 60)) / 1000);
       document.getElementById(`${this.selector}`).innerHTML = hbs_timer({days, hours, mins, secs});
     }, 1000);
   }
